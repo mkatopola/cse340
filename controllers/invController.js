@@ -18,5 +18,33 @@ invCont.buildByClassificationId = async function (req, res, next) {
         grid,
     })
 }
+/* ***************************
+ *  Build inventory detail view 
+ * ************************** */
+invCont.buildByDetailId = async function (req, res, next) {
+    const detail_id = req.params.detailId;
+    const data = await invModel.getVehicleByDetId(detail_id);
+    const grid = await utilities.buildVehicleDet(data);
+    let nav = await utilities.getNav();
+    const vehicleInfo =
+      data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model;
+    res.render("./inventory/views", {
+      title: vehicleInfo,
+      nav,
+      grid,
+    });
+  };
+
+  /* **************************************** *
+ *  Build error
+ * **************************************** */
+invCont.buildError = (req, res, next) => {
+    const error500 = new Error();
+    error500.status = 500;
+    error500.message =
+      "I am running away from my responsibilities. And it feels good";
+    next(error500);
+    //throw new Error("Intentional error occurred");
+  };
 
 module.exports = invCont

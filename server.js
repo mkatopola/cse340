@@ -31,8 +31,30 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 //File Not Found Route - must be last in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+  next({
+    status: 404,
+    message: 'Sorry, we appear to have lost that page.'
+  })
 })
+app.use(async (req, res, next) => {
+  next({
+    status: 500,
+    message: "Please be patient, we'll get back to you.",
+  });
+});
+
+/* ***********************
+ * Express Error Handler 500
+ ************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  res.status(500).render("errors/error", {
+    title: "This error is intentional.",
+    message: "I love my job.",
+    nav,
+  });
+});
 
 /* ***********************
 * Express Error Handler
