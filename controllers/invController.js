@@ -38,13 +38,12 @@ invCont.buildByDetailId = async function (req, res, next) {
   /* **************************************** *
  *  Build error
  * **************************************** */
-invCont.buildError = (req, res, next) => {
-    const error500 = new Error();
-    error500.status = 500;
-    error500.message =
-      "I am running away from my responsibilities. And it feels good";
-    next(error500);
-    //throw new Error("Intentional error occurred");
-  };
+// invCont.buildError = (req, res, next) => {
+//     const error500 = new Error();
+//     error500.status = 500;
+//     error500.message =
+//       "Sorry, this was intentional";
+//     next(error500);
+//   };
 
 module.exports = invCont
