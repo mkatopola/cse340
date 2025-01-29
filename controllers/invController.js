@@ -18,6 +18,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
         grid,
     })
 }
+
+
 /* ***************************
  *  Build inventory detail view 
  * ************************** */
@@ -35,15 +37,17 @@ invCont.buildByDetailId = async function (req, res, next) {
     });
   };
 
+
   /* **************************************** *
  *  Build error
  * **************************************** */
-// invCont.buildError = (req, res, next) => {
-//     const error500 = new Error();
-//     error500.status = 500;
-//     error500.message =
-//       "Sorry, this was intentional";
-//     next(error500);
-//   };
+invCont.buildError = (req, res, next) => {
+    const error500 = new Error();
+    error500.status = 500;
+    error500.message =
+      "Sorry, this was intentional";
+    next(error500);
+  };
+  
 
 module.exports = invCont

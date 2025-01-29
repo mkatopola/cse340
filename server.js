@@ -73,7 +73,6 @@ app.use(async (req, res, next) => {
   });
 });
 
-
 //File Not Found Route - must be last in list
 app.use(async (req, res, next) => {
   next({
@@ -81,7 +80,6 @@ app.use(async (req, res, next) => {
     message: 'Sorry, we appear to have lost that page.'
   })
 })
-
 
 /* ***********************
  * Express Error Handler 500
@@ -110,12 +108,14 @@ app.use(async (err, req, res, next) => {
   })
 })
 
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+
 
 /* ***********************
  * Log statement to confirm server operation
