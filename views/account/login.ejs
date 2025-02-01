@@ -1,36 +1,43 @@
-<!-- The title -->
 <% if (title) { %>
     <h1>
         <%= title %>
     </h1>
     <% } else { res.redirect('/') } %>
-
         <%- messages() %>
 
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
 
-            <form id="login-form" action="/account/login" method="post">
-                <fieldset>
-                    <label>
-                        Email:
-                        <input type="email" name="account_email" required>
-                    </label>
-                    <label>
-                        Password:
-                        <input type="password" name="account_password" id="input-pass"
-                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-                    </label>
-                    <div id="instructions">
-                        <p>Your password should have at least 12 characters with atleast 1 number, 1 lowercase letter, 1
-                            capital letter and 1 non-alphanumeric character.</p>
-                    </div>
-                    <div id="check">
-                        <p>Show password:</p>
-                        <input id="checkbox" type="checkbox" onclick="showPassword()">
-                    </div>
-                    <input type="submit" value="LOGIN" class="login-btn">
-                    <h2>No account?<a href="/account/register">Sign-up</a></h2>
-                </fieldset>
-            </form>
+                    <form id="login-form" action="/account/login" method="post">
+                        <fieldset>
+                            <label>
+                                Email:
+                                <input type="email" name="account_email" required>
+                            </label>
+                            <label>
+                                Password:
+                                <input type="password" name="account_password" id="input-pass"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+                            </label>
+                            <div id="instructions">
+                                <p>Your password should have at least 12 characters with atleast 1 number, 1 lowercase
+                                    letter, 1
+                                    capital letter and 1 non-alphanumeric character.</p>
+                            </div>
+                            <div id="check">
+                                <p>Show password:</p>
+                                <input id="checkbox" type="checkbox" onclick="showPassword()">
+                            </div>
+                            <input type="submit" value="LOGIN" class="login-btn">
+                            <h2>No account?<a href="/account/register">Sign-up</a></h2>
+                        </fieldset>
+                    </form>
 
-            <script src="/js/script.js">
-            </script>
+                    <script src="/js/script.js"></script>
