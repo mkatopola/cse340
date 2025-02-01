@@ -17,13 +17,8 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const accountRoute = require("./routes/accountRoute");
+const bodyParser = require("body-parser")
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.set("layout", "./layouts/layout"); // Not at views root
 
 /* ***********************
  * Middleware
@@ -45,6 +40,19 @@ app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
   next();
 });
+
+//Body-Parser Middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-www-form-urlencoded
+
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout"); // Not at views root
+
 
 /* ***********************
  * Routes
