@@ -90,6 +90,22 @@ Util.buildVehicleDet = async function(data){
   return grid
   }
 
+/* **************************************
+* Build classification options field - add inventory form.
+* ************************************ */
+Util.buildOptions = async function (optionSelected=null) {
+  let data = await invModel.getClassifications()
+  let options
+    options = '<select name="classification_id" id="classificationId" required>'
+    options += '<option value="" selected disabled hidden> Choose a classification </option>'
+    data.rows.forEach(row => {
+    options += `<option value="${row.classification_id}"
+    ${row.classification_id === Number(optionSelected)? 'selected':''}
+    >${row.classification_name} </option>`
+    })
+    options += '</select>'
+  return options
+}
 
 /* ****************************************
  * Middleware For Handling Errors
