@@ -1,28 +1,34 @@
 <%# Content Heading %>
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-        res.redirect('/')
-} %>
+    <% if (title) { %>
+        <h1>
+            <%= title %>
+        </h1>
+        <% } else { res.redirect('/') } %>
 
-<%- messages() %>
+            <%- messages() %>
 
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-<%  }) %>
-   </ul>
-<% } %>
+                <% if (errors) { %>
+                    <ul class="notice">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
 
-<div class="newClassifOrVeh">
-    <p class="nclassi">Click the button to add a New Classification</p>
-    <button class="manage" id="managebtt" onclick="location.href='/inv/addClassification'">
-        Add New Classification
-    </button>
+                        <div class="management">
+                            <div class="mgt-bttn">
+                                <p>Click the button to add a New Classification</p>
+                                <button>
+                                    <a href="/inv/addClassification">Add New Classification</a>
+                                </button>
+                            </div>
 
-    <p class="nveh">Click the button to add a New Vehicle</p>
-    <button class="manage" id="managebtt" onclick="location.href='/inv/addInventory'">
-        Add New Vehicle
-    </button>
-</div>
+                            <div class="mgt-bttn">
+                                <p>Click the button to add a New Vehicle</p>
+                                <button class="manage">
+                                    <a href="/inv/addInventory">Add New Vehicle</a>
+                                </button>
+                            </div>
+                        </div>

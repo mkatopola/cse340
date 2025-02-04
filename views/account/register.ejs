@@ -18,7 +18,7 @@
 
                     <form id="registration-form" action="/account/register" method="post">
                         <fieldset>
-                            <p id="required-info">All fields are required.</p>
+                            <p class="required-info">All fields are required.</p>
                             <label>
                                 First name:
                                 <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
@@ -36,7 +36,7 @@
                                 <input type="password" name="account_password" id="input-pass2"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
                             </label>
-                            <div id="instructions">
+                            <div class="instructions">
                                 <p>Your password should have at least 12 characters with atleast 1 number, 1 lowercase
                                     letter, 1
                                     capital letter and 1 non-alphanumeric character.</p>

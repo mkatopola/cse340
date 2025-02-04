@@ -20,21 +20,21 @@
 
                             <form id="add-classification" action="/inv/addClassification" method="post">
                                 <fieldset>
-                                    <legend>Add New Classification</legend>
-                                    <p id="required-info">* All fields are required.</p>
+                                    <div id="add-class">
+                                        <p class="required-info">This is required.</p>
+                                        <label for="classification_name">Classification Name</label>
+                                        <input type="text" name="classification_name" id="classification_name"
+                                            pattern="^[A-Za-z]+$"
+                                            title="Alphabetic characters only, no spaces or special characters."
+                                            required aria-describedby="instructions">
 
-                                    <label for="classificationName">Classification Name</label>
-                                    <input type="text" name="classification_name" id="classificationName"
-                                        pattern="^[A-Za-z]+$"
-                                        title="Alphabetic characters only, no spaces or special characters." required
-                                        aria-describedby="instructions">
+                                        <div class="instructions">
+                                            <p>Name must contain alphabetic characters only (no spaces or special
+                                                characters).</p>
+                                        </div>
 
-                                    <div id="instructions">
-                                        <p>Name must contain alphabetic characters only (no spaces or special
-                                            characters).</p>
+                                        <input type="submit" value="Add Now" class="submit-btn"
+                                            aria-label="Submit new classification">
                                     </div>
-
-                                    <input type="submit" value="Add Now" class="submit-btn"
-                                        aria-label="Submit new classification">
                                 </fieldset>
                             </form>

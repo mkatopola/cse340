@@ -18,40 +18,33 @@ router.get(
 );
 
 // Route to Management View
-router.get(
-  "/",
-  // utilities.checkLogin,
-  // utilities.checkPermission,
-  utilities.handleErrors(invController.buildManagementView)
-);
+router.get("/", utilities.handleErrors(invController.buildManagementView));
 
 // Route to Add Classification View
 router.get(
   "/addClassification",
-  // utilities.checkLogin,
-  // utilities.checkPermission,
   utilities.handleErrors(invController.buildAddClassification)
 );
 
 //Process to add classification
-router.post("/addClassification",
+router.post(
+  "/addClassification",
   validate.addClassificationRules(),
   validate.checkAddClassificationData,
-  utilities.handleErrors(invController.addClassification))
-
+  utilities.handleErrors(invController.addClassification)
+);
 
 // Route to Add Inventory View
 router.get(
   "/addInventory",
-  // utilities.checkLogin,
-  // utilities.checkPermission,
   utilities.handleErrors(invController.buildAddInventory)
 );
 
-router.post("/addInventory",
+router.post(
+  "/addInventory",
   validate.inventoryRules(),
   validate.checkInvData,
   utilities.handleErrors(invController.addInventory)
-)
+);
 
 module.exports = router;

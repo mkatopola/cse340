@@ -32,7 +32,7 @@ header a {
   font-size: 1.5rem;
 }
 
-/*Navigation*/
+/*NAVIGATION*/
 nav {
   background-color: #333437;
   color: white;
@@ -144,7 +144,7 @@ ul li {
   align-content: center;
 }
 
-/*Headings*/
+/*HEADINGS*/
 h1 {
   font-family: "Dodger";
   font-size: 3rem;
@@ -165,7 +165,7 @@ h3 {
   font-size: 1.6rem;
 }
 
-/*Classification*/
+/*CLASSIFICATION*/
 #inv-display {
   list-style: none;
   display: grid;
@@ -217,6 +217,7 @@ h3 {
   color: #000000;
 }
 
+
 /*Detail View*/
 #container-detail {
   display: flex;
@@ -251,6 +252,7 @@ h3 {
   text-align: center;
   padding: 0.625rem;
 }
+
 
 /* Login Form */
 #login-form {
@@ -405,13 +407,7 @@ h3 {
   cursor: pointer;
 }
 
-#messages {
-  color: rgb(162, 7, 7);
-  font-family: "Montserrat", sans-serif;
-  width: 90%;
-}
-
-#registration-form #instructions p {
+.instructions p {
   color: black;
   margin: 20px;
   font-style: italic;
@@ -431,15 +427,169 @@ h3 {
   margin-top: 10%;
 }
 
-#registration-form #required-info {
+ .required-info {
   color: white;
-  margin-left: 18px;
   font-weight: 700;
 }
 
+
+/* MESSAGES */
+#messages {
+  color: rgb(162, 7, 7);
+  font-family: "Montserrat", sans-serif;
+  width: 90%;
+}
 .notice {
   color: rgb(151, 0, 0);
 }
+
+
+/* MANAGEMENT VIEW*/
+.management {
+  text-align: center;
+}
+
+.management a {
+  text-decoration: none;
+}
+
+.mgt-bttn {
+  margin: 4rem;
+}
+
+.mgt-bttn p, a {
+  font-size: 25px;
+}
+
+/* ADD NEW CLASSIFICATION FORM */
+#add-classification {
+  margin: 30px;
+  color: #000;
+}
+
+#add-classification fieldset {
+  margin: 3rem;
+  border: 0.25rem solid #c66717;
+  border-radius: 2rem;
+  padding: 0.5rem 2%;
+  background-color: #40b6e0;
+}
+
+#add-classification label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #000000;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+#add-classification input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+
+#add-class {
+  margin: 2rem;
+}
+
+#add-classification .submit-btn {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#add-classification .submit-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+#add-classification input:required {
+  color: #000000;
+  border: red solid;
+}
+
+#add-classification input:required:valid {
+  color: #000;
+  border: blue 4px solid;
+}
+
+
+/* ADD NEW VEHICLE TO INVENTORY */
+#add-inventory {
+  margin: 30px;
+  color: #000;
+}
+
+#add-inventory fieldset {
+  margin: 3rem;
+  border: 0.25rem solid #c66717;
+  border-radius: 2rem;
+  padding: 0.5rem 2%;
+  background-color: #40b6e0;
+}
+
+#add-inventory select {
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+}
+
+#add-inventory label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #000000;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+#add-inventory input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#add-inventory textarea {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#add-class {
+  margin: 2rem;
+}
+
+#add-inventory .submit-btn {
+  width: 30%;
+  text-align: center;
+  margin: 2rem auto;
+  cursor: pointer;
+}
+
+#add-inventory .submit-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+#add-inventory select:required,
+#add-inventory input:required {
+  border: red solid;
+}
+
+#add-inventory select:required:valid,
+#add-inventory input:required:valid {
+  border: blue 4px solid;
+}
+
 
 /* Responsive design for desktop view */
 @media only screen and (min-width: 768px) {
@@ -530,4 +680,19 @@ h3 {
   #check input {
     width: 4%;
   }
+
+  .management {
+    text-align: left;
+  }
+
+  #add-classification {
+   max-width: 45rem;
+   margin: 0 auto;
+  }
+
+  #add-inventory {
+    max-width: 45rem;
+    margin: 0 auto;
+  }
+  
 }
