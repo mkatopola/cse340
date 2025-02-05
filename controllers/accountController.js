@@ -118,7 +118,7 @@ async function accountLogin(req, res) {
           maxAge: 3600 * 1000
         });
       }
-      return res.redirect("/account/accountManagement");
+      return res.redirect("/account/");
     } else {
       req.flash(
         "message notice",

@@ -16,7 +16,8 @@ router.get(
 
 //Route for management account
 router.get(
-  "/accountManagement",
+  "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagementView)
 );
 
