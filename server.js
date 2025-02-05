@@ -1,5 +1,5 @@
 /* ******************************************
- * This server.js file is the primary file of the 
+ * This server.js file is the primary file of the
  * application. It is used to control the project.
  *******************************************/
 
@@ -17,22 +17,25 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const accountRoute = require("./routes/accountRoute");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 
 /* ***********************
  * Middleware
  *************************/
-app.use(session({
-  store: new (require("connect-pg-simple")(session))({
-    createTableIfMissing: true,
-    pool,
-  }),
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: "sessionId",
-}));
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true,
+      pool
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "sessionId"
+  })
+);
 
 // Express Messages Middleware
 app.use(require("connect-flash")());
@@ -42,9 +45,14 @@ app.use(function (req, res, next) {
 });
 
 //Body-Parser Middleware
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+//Cookie-Parser Middleware
+app.use(cookieParser());
+
+// JWTToken Middleware
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
@@ -52,7 +60,6 @@ app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-w
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("layout", "./layouts/layout"); // Not at views root
-
 
 /* ***********************
  * Routes
@@ -72,7 +79,7 @@ app.use("/account", accountRoute);
 app.use(async (req, res, next) => {
   next({
     status: 404,
-    message: "Sorry, we appear to have lost that page.",
+    message: "Sorry, we appear to have lost that page."
   });
 });
 
@@ -80,9 +87,11 @@ app.use(async (req, res, next) => {
 app.use(async (req, res, next) => {
   next({
     status: 500,
-    message: "Please be patient, we'll get back to you.",
+    message: "Please be patient, we'll get back to you."
   });
 });
+
+
 
 /* ***********************
  * Error Handlers
@@ -98,7 +107,7 @@ app.use(async (err, req, res, next) => {
   res.status(404).render("errors/error", {
     title: "Page Not Found",
     message: err.message,
-    nav,
+    nav
   });
 });
 
@@ -109,15 +118,19 @@ app.use(async (err, req, res, next) => {
   res.status(err.status || 500).render("errors/error", {
     title: err.status || "Server Error",
     message: err.message || "Something went wrong.",
-    nav,
+    nav
   });
 });
+
+
 
 /* ***********************
  * Local Server Information
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT;
+const host = process.env.HOST;
+
+
 
 /* ***********************
  * Log statement to confirm server operation
