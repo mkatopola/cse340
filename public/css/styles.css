@@ -269,7 +269,6 @@ h3 {
   margin-top: 3rem;
 }
 
-
 /* Login Form */
 #login-form {
   margin: 30px;
@@ -497,21 +496,20 @@ a {
   border: blue 4px solid;
 }
 
-
 /* TABLE */
 
 table {
   width: 100%;
-  border-collapse: collapse; 
+  border-collapse: collapse;
   border: 0.25rem solid #c66717;
-  margin: 2rem 0; 
+  margin: 2rem 0;
   font-size: 1.1rem;
   color: #000;
   text-decoration: none;
 }
 
 thead {
-  background-color: #f3f3f3; 
+  background-color: #f3f3f3;
 }
 
 thead th {
@@ -538,8 +536,6 @@ td a {
 tbody tr:hover {
   background-color: #8ff994;
 }
-
-
 
 /* ADD NEW CLASSIFICATION FORM */
 #add-classification {
@@ -669,6 +665,78 @@ tbody tr:hover {
   border: blue 4px solid;
 }
 
+/* EDIT INVENTORY VIEW */
+
+/* ADD NEW VEHICLE TO INVENTORY */
+#edit-inventory {
+  margin: 30px;
+  color: #000;
+}
+
+#edit-inventory fieldset {
+  margin: 3rem;
+  border: 0.25rem solid #c66717;
+  border-radius: 2rem;
+  padding: 0.5rem 2%;
+  background-color: #40b6e0;
+}
+
+#edit-inventory select {
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+}
+
+#edit-inventory label {
+  display: block;
+  text-align: left;
+  padding-top: 1rem;
+  color: #000000;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+#edit-inventory input {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#edit-inventory textarea {
+  display: block;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#edit-class {
+  margin: 2rem;
+}
+
+#edit-inventory .submit-btn {
+  width: 30%;
+  text-align: center;
+  margin: 2rem auto;
+  cursor: pointer;
+}
+
+#edit-inventory .submit-btn:hover {
+  background-color: #0d6e92;
+  color: #fff;
+}
+
+#edit-inventory select:required,
+#edit-inventory input:required {
+  border: red solid;
+}
+
+#edit-inventory select:required:valid,
+#edit-inventory input:required:valid {
+  border: blue 4px solid;
+}
+
 /* Responsive design for desktop view */
 @media only screen and (min-width: 768px) {
   body {
@@ -747,7 +815,8 @@ tbody tr:hover {
   #login-form,
   #registration-form,
   #add-classification,
-  #add-inventory {
+  #add-inventory,
+  #edit-inventory {
     max-width: 40rem;
     margin: 5rem auto;
   }

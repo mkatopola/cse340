@@ -46,11 +46,19 @@ router.get(
   utilities.handleErrors(invController.buildAddInventory)
 );
 
+//Route to process Add nventory
 router.post(
   "/addInventory",
   validate.inventoryRules(),
   validate.checkInvData,
   utilities.handleErrors(invController.addInventory)
+);
+
+//Route to edit inventory view
+// Route to get Edit
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.buildEditInventoryView)
 );
 
 module.exports = router;
