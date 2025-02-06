@@ -171,6 +171,69 @@ invCont.addInventory = async function (req, res, next) {
   }
 };
 
+/***************************
+ * Process editing inventory
+ * ************************ */
+invCont.editInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  let options = await utilities.buildOptions();
+
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
+
+  const editResult = await invModel.editInventory(
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  );
+
+  if (editResult) {
+    const itemName = editResult.inv_make + " " + editResult.inv_model
+    req.flash("notice", `The ${itemName} was succesfully updated.`);
+    res.redirect("/inv/");
+  } else {
+    const options = await utilities.buildOptions(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("inventory/editInventory", {
+    title: "Edit " + itemName,
+    nav,
+    options: options,
+    errors: null,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+    })
+  }
+}
+
 /* **************************************** *
  *  Build error
  * **************************************** */

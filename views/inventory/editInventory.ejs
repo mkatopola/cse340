@@ -43,7 +43,7 @@
                                             <label for="invDescription">Description</label>
                                             <textarea name="inv_description" id="invDescription" rows="4" cols="50"
                                                 maxlength="500"
-                                                placeholder="Add vehicle description (Max 200 characters)"
+                                                placeholder="Add vehicle description (Max 500 characters)"
                                                 required><%= typeof inv_description !== 'undefined' ? inv_description : '' %></textarea>
 
                                             <!-- Image Path -->
@@ -83,7 +83,11 @@
                                                 value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>">
 
                                             <input type="submit" name="submit" value="Update Vehicle" class="submit-btn"
-                                                aria-label="Submit new vehicle to inventory">
+                                                disabled aria-label="Submit new vehicle to inventory">
+                                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+                                                locals.inv_id %>"
+                                                <% } %>>
                                     </div>
                                 </fieldset>
                             </form>
+                            <script src="/js/inv-edit.js"></script>
