@@ -41,8 +41,8 @@ invCont.buildByDetailId = async function (req, res, next) {
  *  Build management view
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
-  let options = await utilities.buildOptions();
   let nav = await utilities.getNav();
+  let options = await utilities.buildOptions();
   try {
     res.render("./inventory/management", {
       title: "Inventory Management",
@@ -158,7 +158,7 @@ invCont.addInventory = async function (req, res, next) {
       title: "Inventory Management",
       nav,
       options,
-      errors: null,
+      errors: null
     });
   } else {
     req.flash("notice", "Sorry, the operation failed.");
@@ -166,11 +166,10 @@ invCont.addInventory = async function (req, res, next) {
       title: "Add Inventory",
       nav,
       options,
-      errors: null,
+      errors: null
     });
   }
 };
-
 
 /* **************************************** *
  *  Build error
@@ -180,6 +179,21 @@ invCont.buildError = (req, res, next) => {
   error500.status = 500;
   error500.message = "Sorry, this was intentional";
   next(error500);
+};
+
+/*********************************************
+ * Return Inventory by Classification as JSON
+ **********************************************/
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id);
+  const invData = await invModel.getInventoryByClassificationId(
+    classification_id
+  );
+  if (invData[0].inv_id) {
+    return res.json(invData);
+  } else {
+    next(new Error("No data returned"));
+  }
 };
 
 module.exports = invCont;

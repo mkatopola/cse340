@@ -11,6 +11,12 @@ router.get(
   utilities.handleErrors(invController.buildByClassificationId)
 );
 
+//Route to get inventory list by classification_id
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
 // Route to build inventory detail view
 router.get(
   "/detail/:detailId",
