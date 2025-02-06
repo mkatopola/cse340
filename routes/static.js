@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 // Static Routes
@@ -10,7 +10,7 @@ router.use("/images", express.static(__dirname + "public/images"));
 
 //Intentional error 500
 router.get("/error", (req, res, next) => {
-    next(new error("Intentional Server Error"))
-})
+  next(new error("Intentional Server Error"));
+});
 
 module.exports = router;

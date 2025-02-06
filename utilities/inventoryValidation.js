@@ -4,8 +4,6 @@ const invModel = require("../models/inventoryModel");
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
-
-
 /*  **********************************
  * Classification Data Validation Rules
  * ********************************* */
@@ -17,13 +15,13 @@ validate.addClassificationRules = () => {
       .notEmpty()
       .withMessage("Classification Name cannot be empty")
       .matches(/^[A-Za-z]+$/)
-      .withMessage("Classification Name must contain alphabetic characters only (no spaces or special characters)")
+      .withMessage(
+        "Classification Name must contain alphabetic characters only (no spaces or special characters)"
+      )
       .isLength({ min: 3 })
       .withMessage("Classification Name must be at least 3 characters long")
   ];
 };
-
-
 
 /*  **********************************
  *  Check data and return errors or continue to add classification
@@ -45,13 +43,11 @@ validate.checkAddClassificationData = async (req, res, next) => {
   next();
 };
 
-
 /*  **********************************
  *  Inventory Data Validation Rules
  * ********************************* */
 validate.inventoryRules = () => {
   return [
-    //not sure how it works but works for classification_id
     body("classification_id")
       .trim()
       .escape()
@@ -59,7 +55,6 @@ validate.inventoryRules = () => {
       .isLength({ min: 1 })
       .withMessage("Please provide the classification."),
 
-    //this part to infinity and beyond is for characteristics
     body("inv_make")
       .trim()
       .escape()
@@ -81,12 +76,12 @@ validate.inventoryRules = () => {
       .isLength({ min: 10 })
       .withMessage("Please provide the vehicle's description."),
 
-      body("inv_image")
-      .isLength({min: 10})
+    body("inv_image")
+      .isLength({ min: 10 })
       .withMessage("Image field does not meet requirements"),
-      
-      body("inv_thumbnail")
-      .isLength({min: 10})
+
+    body("inv_thumbnail")
+      .isLength({ min: 10 })
       .withMessage("Thumbnail field does not meet requirements"),
 
     body("inv_price")
@@ -122,37 +117,46 @@ validate.inventoryRules = () => {
   ];
 };
 
-
 /* ******************************
  * Check data and return errors or continue adding inventory
  * ***************************** */
 validate.checkInvData = async (req, res, next) => {
-    const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
-    let errors = []
-    errors = validationResult(req)
-    if(!errors.isEmpty()) {
-     let nav = await utilities.getNav()
-     let options = await utilities.buildOptions()
-     res.render("./inventory/addInventory", {
-        errors,
-        title: "Add Inventory",
-        nav,
-        options,
-        classification_id,
-        inv_make,
-        inv_model,
-        inv_description,
-        inv_image,
-        inv_thumbnail,
-        inv_price,
-        inv_year,
-        inv_miles,
-        inv_color,
-     })
-     return
-    }
-    next()
-}
-
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color
+  } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let options = await utilities.buildOptions();
+    res.render("./inventory/addInventory", {
+      errors,
+      title: "Add Inventory",
+      nav,
+      options,
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color
+    });
+    return;
+  }
+  next();
+};
 
 module.exports = validate;

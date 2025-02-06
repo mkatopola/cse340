@@ -20,7 +20,6 @@ const accountRoute = require("./routes/accountRoute");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-
 /* ***********************
  * Middleware
  *************************/
@@ -52,7 +51,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(cookieParser());
 
 // JWTToken Middleware
-app.use(utilities.checkJWTToken)
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * View Engine and Templates
@@ -91,8 +90,6 @@ app.use(async (req, res, next) => {
   });
 });
 
-
-
 /* ***********************
  * Error Handlers
  *************************/
@@ -122,15 +119,11 @@ app.use(async (err, req, res, next) => {
   });
 });
 
-
-
 /* ***********************
  * Local Server Information
  *************************/
 const port = process.env.PORT;
 const host = process.env.HOST;
-
-
 
 /* ***********************
  * Log statement to confirm server operation

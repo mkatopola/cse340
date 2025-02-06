@@ -136,18 +136,17 @@ async function accountLogin(req, res) {
   }
 }
 
-  /* ****************************************
-   *  Deliver account management view
-   * *************************************** */
-  async function buildAccountManagementView(req, res) {
-    let nav = await utilities.getNav();
-    res.render("account/accountManagement", {
-      title: "Account Management",
-      nav,
-      errors: null,
-    });
-  }
-
+/* ****************************************
+ *  Deliver account management view
+ * *************************************** */
+async function buildAccountManagementView(req, res) {
+  let nav = await utilities.getNav();
+  res.render("account/accountManagement", {
+    title: "Account Management",
+    nav,
+    errors: null
+  });
+}
 
 module.exports = {
   buildLogin,

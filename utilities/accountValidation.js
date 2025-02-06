@@ -100,7 +100,6 @@ validate.loginRules = () => {
   ];
 };
 
-
 /* ******************************
  * Check data and return errors or continue login
  * ***************************** */
