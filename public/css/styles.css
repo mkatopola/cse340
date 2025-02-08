@@ -477,7 +477,7 @@ h3 {
 }
 
 /* MANAGEMENT VIEW*/
-.management {
+#management-form {
   text-align: center;
   margin: 2rem 3rem;
   border: 0.25rem solid #c66717;
