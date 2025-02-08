@@ -24,11 +24,18 @@ router.get(
 );
 
 // Route to Management View
-router.get("/", utilities.handleErrors(invController.buildManagementView));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.checkPermission,
+  utilities.handleErrors(invController.buildManagementView)
+);
 
 // Route to Add Classification View
 router.get(
   "/addClassification",
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.buildAddClassification)
 );
 
@@ -37,12 +44,16 @@ router.post(
   "/addClassification",
   validate.addClassificationRules(),
   validate.checkAddClassificationData,
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.addClassification)
 );
 
 // Route to Add Inventory View
 router.get(
   "/addInventory",
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.buildAddInventory)
 );
 
@@ -51,12 +62,16 @@ router.post(
   "/addInventory",
   validate.inventoryRules(),
   validate.checkInvData,
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.addInventory)
 );
 
 //Route to edit inventory view
 router.get(
   "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.buildEditInventoryView)
 );
 
@@ -65,18 +80,24 @@ router.post(
   "/editInventory",
   validate.inventoryRules(),
   validate.checkEditData,
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.editInventory)
 );
 
 //Route to delete an inventory item
 router.get(
   "/delete/:inv_id",
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.buildDeleteInventoryView)
 );
 
 //Route to process inventory deletion
 router.post(
   "/deleteInventory",
+  utilities.checkLogin,
+  utilities.checkPermission,
   utilities.handleErrors(invController.deleteInventory)
 );
 

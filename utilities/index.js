@@ -189,4 +189,16 @@ Util.checkLogin = (req, res, next) => {
   }
 };
 
+Util.checkPermission = (req, res, next) => {
+  if (res.locals.loggedin) {
+    const account_type = res.locals.accountData.account_type;
+    if (account_type == "Admin" || account_type == "Employee") {
+      next();
+    } else {
+      req.flash("notice", "Access denied");
+      return res.redirect("../account/login");
+    }
+  }
+};
+
 module.exports = Util;

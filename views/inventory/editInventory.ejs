@@ -18,9 +18,9 @@
                         </ul>
                         <% } %>
 
-                            <form id="edit-inventory" action="/inv/editInventory" method="post">
+                            <form id="edit-inventory-fom" action="/inv/editInventory" method="post">
                                 <fieldset>
-                                    <div id="edit-class">
+                                    <div id="add-class">
                                         <p class="required-info">All fields are required.</p>
 
                                         <!-- Classification Dropdown -->
@@ -82,7 +82,7 @@
                                                 placeholder="Alphabetic characters only" required
                                                 value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>">
 
-                                            <input type="submit" name="submit" value="Update Vehicle" class="submit-btn"
+                                            <input type="submit" name="submit" value="Update Vehicle" class="login-btn"
                                                 disabled aria-label="Submit new vehicle to inventory">
                                             <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
                                                 locals.inv_id %>"
@@ -90,4 +90,4 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            <script src="/js/inv-edit.js"></script>
+                            <script src="/js/invEdit.js"></script>

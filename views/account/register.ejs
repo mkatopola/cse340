@@ -36,7 +36,7 @@
                             </label>
                             <label>
                                 Password:
-                                <input type="password" name="account_password" id="input-pass2"
+                                <input type="password" name="account_password" id="input-pass"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
                             </label>
                             <div class="instructions">
@@ -44,9 +44,9 @@
                                     letter, 1
                                     capital letter and 1 non-alphanumeric character.</p>
                             </div>
-                            <div id="check2">
+                            <div id="check">
                                 <p>Show password:</p>
-                                <input id="checkbox" type="checkbox" onclick="showPassword2()">
+                                <input id="checkbox" type="checkbox" onclick="showPassword()">
                             </div>
                             <input type="submit" value="REGISTER" class="login-btn">
                             <h2>Already have an account?<a href="/account/login">Log In</a></h2>

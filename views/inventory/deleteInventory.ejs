@@ -18,7 +18,7 @@
                         </ul>
                         <% } %>
 
-                            <form id="edit-inventory" action="/inv/deleteInventory" method="post">
+                            <form id="delete-inventory-form" action="/inv/deleteInventory" method="post">
                                 <fieldset>
                                     <div id="delete-class">
                                         <p class="required-info">All fields are required.</p>
@@ -49,7 +49,7 @@
 
                                         <p>Confirm Deletion - The delete is permanent.</p>
 
-                                        <input type="submit" name="submit" value="Delete Vehicle" class="submit-btn"
+                                        <input type="submit" name="submit" value="Delete Vehicle" class="login-btn"
                                             aria-label="Delete vehicle from inventory">
 
                                         <input type="hidden" name="inv_id" value="<%= inv_id %>">

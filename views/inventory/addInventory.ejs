@@ -18,7 +18,7 @@
                         </ul>
                         <% } %>
 
-                            <form id="add-inventory" action="/inv/addInventory" method="post">
+                            <form id="add-inventory-form" action="/inv/addInventory" method="post">
                                 <fieldset>
                                     <div id="add-class">
                                         <p class="required-info">All fields are required.</p>
@@ -82,7 +82,7 @@
                                                 placeholder="Alphabetic characters only" required
                                                 value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>">
 
-                                            <input type="submit" value="Add Now" class="submit-btn"
+                                            <input type="submit" value="Add Now" class="login-btn"
                                                 aria-label="Submit new vehicle to inventory">
                                     </div>
                                 </fieldset>
