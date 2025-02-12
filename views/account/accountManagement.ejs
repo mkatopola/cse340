@@ -1,35 +1,36 @@
-<% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-        <%- messages() %>
+<h1>
+    <%= title %>
+</h1>
 
-            <% if (errors) { %>
-                <ul class="notice">
-                    <% errors.array().forEach(error=> { %>
-                        <li>
-                            <%= error.msg %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>
+<%- messages() %>
 
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
 
-                    <div id="welcome">
-                        <h2>Welcome <%= locals.accountData.account_firstname %>
-                        </h2>
-                        <p>You're logged in.</p>
-                        <button><a href="/account/update/<%= locals.accountData.account_id%>">Edit Account
-                                Information</a>
-                        </button>
+            <div id="welcome">
+                <h2>Welcome <%= locals.accountData.account_firstname %>
+                </h2>
 
+                <button>
+                    <a href="/account/update/<%= locals.accountData.account_id%>">Edit Account Information</a>
+                </button>
 
-                        <% if(locals.accountData.account_type==="Employee" || locals.accountData.account_type==="Admin"
-                            ) { %>
+                <% if(locals.accountData.account_type==="Employee" || locals.accountData.account_type==="Admin" ) { %>
 
-                            <h3>Inventory Management</h3>
-                            <button><a href="/inv/">Manage Inventory</a></button>
+                    <h3>Inventory Management</h3>
+                    <button><a href="/inv/">Manage Inventory</a></button>
+
+                    <% } %>
+                        <% if(locals.accountData.account_type==='Admin' ) { %>
+                            <h3>Account Type Management</h3>
+                            <button><a href="/account/editAccountType">Management Accounts</a></button>
 
                             <% } %>
-                    </div>
+            </div>

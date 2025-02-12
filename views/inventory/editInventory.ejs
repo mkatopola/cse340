@@ -1,93 +1,87 @@
-<% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { %>
-        <% res.redirect('/') %>
-            <% } %>
+<h1>
+    <%= title %>
+</h1>
 
-                <%- messages() %>
+<%- messages() %>
 
-                    <% if (errors) { %>
-                        <ul class="notice" role="alert" aria-live="assertive">
-                            <% errors.array().forEach(error=> { %>
-                                <li>
-                                    <%= error.msg %>
-                                </li>
-                                <% }) %>
-                        </ul>
-                        <% } %>
+    <% if (errors) { %>
+        <ul class="notice" role="alert" aria-live="assertive">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
 
-                            <form id="edit-inventory-fom" action="/inv/editInventory" method="post">
-                                <fieldset>
-                                    <div id="add-class">
-                                        <p class="required-info">All fields are required.</p>
+            <form id="edit-inventory-fom" action="/inv/editInventory" method="post">
+                <fieldset>
+                    <div id="add-class">
+                        <p class="required-info">All fields are required.</p>
 
-                                        <!-- Classification Dropdown -->
-                                        <label for="classificationList">Classification</label>
-                                        <%- options %> <!-- Dynamically generated select list -->
+                        <!-- Classification Dropdown -->
+                        <label for="classificationList">Classification</label>
+                        <%- options %> <!-- Dynamically generated select list -->
 
-                                            <!-- Make -->
-                                            <label for="invMake">Make</label>
-                                            <input type="text" name="inv_make" id="invMake" pattern=".{3,}"
-                                                placeholder="Min of 3 characters" required
-                                                value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>">
+                            <!-- Make -->
+                            <label for="invMake">Make</label>
+                            <input type="text" name="inv_make" id="invMake" pattern=".{3,}"
+                                placeholder="Min of 3 characters" required
+                                value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>">
 
-                                            <!-- Model -->
-                                            <label for="invModel">Model</label>
-                                            <input type="text" name="inv_model" id="invModel" pattern=".{3,}"
-                                                placeholder="Min of 3 characters" required
-                                                value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>">
+                            <!-- Model -->
+                            <label for="invModel">Model</label>
+                            <input type="text" name="inv_model" id="invModel" pattern=".{3,}"
+                                placeholder="Min of 3 characters" required
+                                value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>">
 
-                                            <!-- Description -->
-                                            <label for="invDescription">Description</label>
-                                            <textarea name="inv_description" id="invDescription" rows="4" cols="50"
-                                                maxlength="500"
-                                                placeholder="Add vehicle description (Max 500 characters)"
-                                                required><%= typeof inv_description !== 'undefined' ? inv_description : '' %></textarea>
+                            <!-- Description -->
+                            <label for="invDescription">Description</label>
+                            <textarea name="inv_description" id="invDescription" rows="4" cols="50" maxlength="500"
+                                placeholder="Add vehicle description (Max 500 characters)"
+                                required><%= typeof inv_description !== 'undefined' ? inv_description : '' %></textarea>
 
-                                            <!-- Image Path -->
-                                            <label for="invImage">Image Path</label>
-                                            <input type="text" name="inv_image" id="invImage"
-                                                placeholder="/images/vehicles/filename.png" required
-                                                value="<%= typeof inv_image !== 'undefined' ? inv_image : '' %>">
+                            <!-- Image Path -->
+                            <label for="invImage">Image Path</label>
+                            <input type="text" name="inv_image" id="invImage"
+                                placeholder="/images/vehicles/filename.png" required
+                                value="<%= typeof inv_image !== 'undefined' ? inv_image : '' %>">
 
-                                            <!-- Thumbnail Path -->
-                                            <label for="invThumbnail">Thumbnail Path</label>
-                                            <input type="text" name="inv_thumbnail" id="invThumbnail"
-                                                placeholder="/images/vehicles/filename.png" required
-                                                value="<%= typeof inv_thumbnail !== 'undefined' ? inv_thumbnail : '' %>">
+                            <!-- Thumbnail Path -->
+                            <label for="invThumbnail">Thumbnail Path</label>
+                            <input type="text" name="inv_thumbnail" id="invThumbnail"
+                                placeholder="/images/vehicles/filename.png" required
+                                value="<%= typeof inv_thumbnail !== 'undefined' ? inv_thumbnail : '' %>">
 
-                                            <!-- Price -->
-                                            <label for="invPrice">Price</label>
-                                            <input type="number" name="inv_price" id="invPrice"
-                                                placeholder="Decimal or integer" step="0.01" min="0" required
-                                                value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>">
+                            <!-- Price -->
+                            <label for="invPrice">Price</label>
+                            <input type="number" name="inv_price" id="invPrice" placeholder="Decimal or integer"
+                                step="0.01" min="0" required
+                                value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>">
 
-                                            <!-- Year -->
-                                            <label for="invYear">Year</label>
-                                            <input type="text" name="inv_year" id="invYear" placeholder="4-digit year"
-                                                pattern="^[0-9]{4}$" required
-                                                value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>">
+                            <!-- Year -->
+                            <label for="invYear">Year</label>
+                            <input type="text" name="inv_year" id="invYear" placeholder="4-digit year"
+                                pattern="^[0-9]{4}$" required
+                                value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>">
 
-                                            <!-- Miles -->
-                                            <label for="invMiles">Miles</label>
-                                            <input type="number" name="inv_miles" id="invMiles"
-                                                placeholder="Digits only" min="0" pattern="[0-9]+" required
-                                                value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>">
+                            <!-- Miles -->
+                            <label for="invMiles">Miles</label>
+                            <input type="number" name="inv_miles" id="invMiles" placeholder="Digits only" min="0"
+                                pattern="[0-9]+" required
+                                value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>">
 
-                                            <!-- Color -->
-                                            <label for="invColor">Color</label>
-                                            <input type="text" name="inv_color" id="invColor" pattern="[a-zA-Z]+"
-                                                placeholder="Alphabetic characters only" required
-                                                value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>">
+                            <!-- Color -->
+                            <label for="invColor">Color</label>
+                            <input type="text" name="inv_color" id="invColor" pattern="[a-zA-Z]+"
+                                placeholder="Alphabetic characters only" required
+                                value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>">
 
-                                            <input type="submit" name="submit" value="Update Vehicle" class="login-btn"
-                                                disabled aria-label="Submit new vehicle to inventory">
-                                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
-                                                locals.inv_id %>"
-                                                <% } %>>
-                                    </div>
-                                </fieldset>
-                            </form>
-                            <script src="/js/invEdit.js"></script>
+                            <input type="submit" name="submit" value="Update Vehicle" class="login-btn" disabled
+                                aria-label="Submit new vehicle to inventory">
+                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                                <% } %>>
+                    </div>
+                </fieldset>
+            </form>
+            <script src="/js/invEdit.js"></script>

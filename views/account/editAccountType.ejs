@@ -1,0 +1,30 @@
+<h1>
+    <%= title %>
+</h1>
+
+<%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+
+            <form id="editAccountType-form" action="/account/editAccountType" method="post">
+                <fieldset>
+                    <p class="required-info">All fields are required.</p>
+                    <label for="accountList">Select an account</label>
+                    <%- accountList %>
+
+                        <label for="accountTypeList">Select the type</label>
+                        <%- accountTypeList %>
+
+                            <input type="submit" value="Change type" class="login-btn"
+                                aria-label="Submit new account type">
+                </fieldset>
+            </form>

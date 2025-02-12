@@ -1,58 +1,52 @@
-<% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { %>
-        <% res.redirect('/') %>
-            <% } %>
+<h1>
+    <%= title %>
+</h1>
 
-                <%- messages() %>
+<%- messages() %>
 
-                    <% if (errors) { %>
-                        <ul class="notice" role="alert" aria-live="assertive">
-                            <% errors.array().forEach(error=> { %>
-                                <li>
-                                    <%= error.msg %>
-                                </li>
-                                <% }) %>
-                        </ul>
-                        <% } %>
+    <% if (errors) { %>
+        <ul class="notice" role="alert" aria-live="assertive">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
 
-                            <form id="delete-inventory-form" action="/inv/deleteInventory" method="post">
-                                <fieldset>
-                                    <div id="delete-class">
-                                        <p class="required-info">All fields are required.</p>
-                                        
-                                        <!-- Make -->
-                                        <label for="invMake">Make</label>
-                                        <input type="text" name="inv_make" id="invMake" pattern=".{3,}"
-                                            placeholder="Min of 3 characters" required readonly
-                                            value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>">
+            <form id="delete-inventory-form" action="/inv/deleteInventory" method="post">
+                <fieldset>
+                    <div id="delete-class">
+                        <p class="required-info">All fields are required.</p>
 
-                                        <!-- Model -->
-                                        <label for="invModel">Model</label>
-                                        <input type="text" name="inv_model" id="invModel" pattern=".{3,}"
-                                            placeholder="Min of 3 characters" required readonly
-                                            value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>">
+                        <!-- Make -->
+                        <label for="invMake">Make</label>
+                        <input type="text" name="inv_make" id="invMake" pattern=".{3,}"
+                            placeholder="Min of 3 characters" required readonly
+                            value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>">
 
-                                        <!-- Price -->
-                                        <label for="invPrice">Price</label>
-                                        <input type="number" name="inv_price" id="invPrice"
-                                            placeholder="Decimal or integer" step="0.01" min="0" required readonly
-                                            value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>">
+                        <!-- Model -->
+                        <label for="invModel">Model</label>
+                        <input type="text" name="inv_model" id="invModel" pattern=".{3,}"
+                            placeholder="Min of 3 characters" required readonly
+                            value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>">
 
-                                        <!-- Year -->
-                                        <label for="invYear">Year</label>
-                                        <input type="text" name="inv_year" id="invYear" placeholder="4-digit year"
-                                            pattern="^[0-9]{4}$" required readonly
-                                            value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>">
+                        <!-- Price -->
+                        <label for="invPrice">Price</label>
+                        <input type="number" name="inv_price" id="invPrice" placeholder="Decimal or integer" step="0.01"
+                            min="0" required readonly value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>">
 
-                                        <p>Confirm Deletion - The delete is permanent.</p>
+                        <!-- Year -->
+                        <label for="invYear">Year</label>
+                        <input type="text" name="inv_year" id="invYear" placeholder="4-digit year" pattern="^[0-9]{4}$"
+                            required readonly value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>">
 
-                                        <input type="submit" name="submit" value="Delete Vehicle" class="login-btn"
-                                            aria-label="Delete vehicle from inventory">
+                        <p>Confirm Deletion - The delete is permanent.</p>
 
-                                        <input type="hidden" name="inv_id" value="<%= inv_id %>">
-                                    </div>
-                                </fieldset>
-                            </form>
+                        <input type="submit" name="submit" value="Delete Vehicle" class="login-btn"
+                            aria-label="Delete vehicle from inventory">
+
+                        <input type="hidden" name="inv_id" value="<%= inv_id %>">
+                    </div>
+                </fieldset>
+            </form>
