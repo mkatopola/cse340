@@ -82,7 +82,7 @@ validate.checkRegData = async (req, res, next) => {
 };
 
 /*  **********************************
- *  Form Data Validation Rules
+ *  Login Data Validation Rules
  * ********************************* */
 validate.loginRules = () => {
   return [
@@ -104,7 +104,7 @@ validate.loginRules = () => {
  * Check data and return errors or continue login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
-  const { account_email, account_password } = req.body;
+  const { account_email } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -113,8 +113,7 @@ validate.checkLoginData = async (req, res, next) => {
       errors,
       title: "Login",
       nav,
-      account_email,
-      account_password
+      account_email
     });
     return;
   }
@@ -228,5 +227,49 @@ validate.checkPassData = async (req, res, next) => {
   }
   next();
 };
+ 
+
+// FINAL PROJECT
+
+validate.accountTypeUpdateRules = () => {
+  return [
+    body("account_id")
+      .trim()
+      .escape()
+      .isLength({ min: 1 })
+      .withMessage("Please select an 'account'"),
+
+    body("type_id")
+      .trim()
+      .escape()
+      .isLength({ min: 1 })
+      .withMessage("Please select a 'type'"),
+]}
+
+validate.checkAccountTypeUpdateData = async (req, res, next) => {
+  const { account_id, type_id, account_firstname, account_lastname} = req.body
+  let errors = []
+  errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      let accountTypeList = await utilities.buildAccountTypeList(type_id)
+      let accountList = await utilities.buildAccountList(res.locals.accountData.account_id, account_id)
+
+      res.render("account/editAccounttype", {
+          errors,
+          title: "Edit Account Type",
+          nav,
+          accountTypeList,
+          accountList,
+          account_id,
+          type_id,
+          account_firstname,
+          account_lastname,
+      })
+    return
+  }
+  next()
+}
 
 module.exports = validate;

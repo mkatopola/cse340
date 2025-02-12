@@ -67,4 +67,14 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 );
 
+router.get('/editAccountType', 
+  utilities.isAdminAccount,
+  utilities.handleErrors(accountController.buildAccountType))
+
+router.post(
+  "/editAccountType",
+  regValidate.accountTypeUpdateRules(),
+  regValidate.checkAccountTypeUpdateData,
+  utilities.handleErrors(accountController.updateAccountType)
+)
 module.exports = router;

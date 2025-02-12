@@ -109,6 +109,7 @@ async function accountLogin(req, res) {
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: 3600 * 1000 }
       );
+
       if (process.env.NODE_ENV === "development") {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
       } else {
@@ -118,6 +119,7 @@ async function accountLogin(req, res) {
           maxAge: 3600 * 1000
         });
       }
+      req.flash("notice", "You're logged in.");
       return res.redirect("/account/");
     } else {
       req.flash(
@@ -237,6 +239,47 @@ async function updatePassword(req, res, next) {
   }
 }
 
+// FINAL PROJECT \\
+
+/**************************************************
+ * BUILDING THE ACCOUNT TYPES
+ * ********************************************** */
+async function buildAccountType(req, res, next) {
+  let nav = await utilities.getNav();
+  let accountTypeList = await utilities.buildAccountTypeList();
+  let accountList = await utilities.buildAccountList(
+    res.locals.accountData.account_id
+  );
+
+  res.render("account/editAccountType", {
+    title: "Edit Account Type",
+    nav,
+    errors: null,
+    accountTypeList,
+    accountList
+  });
+}
+
+/**************************************************
+ * PROCESS FOR UPDATING ACCOUNT TYPES
+ * ********************************************** */
+async function updateAccountType(req, res, next) {
+  const { account_id, type_id } = req.body;
+
+  const updateResult = await accountModel.updateAccountType(
+    account_id,
+    type_id
+  );
+
+  if (updateResult) {
+    req.flash("notice", `The account type was successfully updated.`);
+    res.redirect("/account/");
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    res.redirect("/account/");
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -246,5 +289,7 @@ module.exports = {
   logoutProcess,
   updateAccountView,
   updateAccount,
-  updatePassword
+  updatePassword,
+  buildAccountType,
+  updateAccountType
 };

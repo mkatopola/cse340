@@ -103,4 +103,52 @@ async function updatePassword(account_password, account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword };
+
+async function getAccountsExcept(account_id) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname FROM account WHERE account_id <> $1', [account_id])
+    return result.rows
+
+  } catch (error) {
+    return error.message
+  }
+}
+
+// Function to fetch the allowed account types from the enum
+async function getAccountType() {
+  try {
+    // This query uses unnest with enum_range to get all allowed enum values
+    const result = await pool.query(
+      `SELECT unnest(enum_range(NULL::public.account_type)) as type_name`
+    );
+    // Map the results to the structure expected by your view (both keys set to the enum value)
+    return result.rows.map(row => ({
+      type_id: row.type_name,
+      type_name: row.type_name
+    }));
+  } catch (error) {
+    return error.message;
+  }
+}
+
+
+// Function to update an account's type
+async function updateAccountType(account_id, type_id) {
+  try {
+    // The query sets the account_type column (which is of the enum type) to the new value
+    const result = await pool.query(
+      `UPDATE public.account 
+         SET account_type = $1 
+         WHERE account_id = $2 
+         RETURNING *`,
+      [type_id, account_id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    return error.message;
+  }
+}
+
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, getAccountsExcept, getAccountType, updateAccountType };

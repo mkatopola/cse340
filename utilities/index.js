@@ -1,4 +1,5 @@
 const invModel = require("../models/inventoryModel");
+const accountModel = require("../models/accountModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const Util = {};
@@ -189,6 +190,9 @@ Util.checkLogin = (req, res, next) => {
   }
 };
 
+/***************************************
+ * Check Authorization
+ ****************************************/
 Util.checkPermission = (req, res, next) => {
   if (res.locals.loggedin) {
     const account_type = res.locals.accountData.account_type;
@@ -199,6 +203,62 @@ Util.checkPermission = (req, res, next) => {
       return res.redirect("../account/login");
     }
   }
+};
+
+// FINAL PROJECT
+/***************************************
+ * Check ADMIN ACCOUNT
+ ****************************************/
+Util.isAdminAccount = (req, res, next) => {
+  const accountType = res.locals.accountData.account_type;
+  if (accountType != "Admin") {
+    return res.redirect("/account/login");
+  }
+  next();
+};
+
+/***************************************
+ * BUILD LIST OF ACCOUNTS
+ ****************************************/
+Util.buildAccountList = async function (login_id = null, account_id = null) {
+  let data = await accountModel.getAccountsExcept(login_id);
+
+  let accountList = '<select name="account_id" id="account_id" required>';
+  accountList += "<option value=''>Choose an account</option>";
+  data.forEach((row) => {
+    accountList += '<option value="' + row.account_id + '"';
+
+    if (account_id != null && row.account_id == account_id) {
+      accountList += " selected ";
+    }
+
+    accountList +=
+      ">" + row.account_firstname + " " + row.account_lastname + "</option>";
+  });
+
+  accountList += "</select>";
+  return accountList;
+};
+
+/***************************************
+ * BUILD LIST OF ACCOUNT TYPES
+ ****************************************/
+Util.buildAccountTypeList = async function (type_id = null) {
+  let data = await accountModel.getAccountType();
+  let accountTypeList = '<select name="type_id" id="type_id" required>';
+  accountTypeList += "<option value=''>Choose a type</option>";
+  data.forEach((row) => {
+    accountTypeList += '<option value="' + row.type_id + '"';
+
+    if (type_id != null && row.type_id == type_id) {
+      accountTypeList += " selected ";
+    }
+
+    accountTypeList += ">" + row.type_name + "</option>";
+  });
+
+  accountTypeList += "</select>";
+  return accountTypeList;
 };
 
 module.exports = Util;

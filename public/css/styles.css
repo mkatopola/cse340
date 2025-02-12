@@ -286,7 +286,8 @@ h3 {
 #add-classification-form,
 #add-inventory-form,
 #edit-inventory-form,
-#delete-inventory-form {
+#delete-inventory-form,
+#editAccountType-form {
   margin: 30px;
   color: #000;
 }
@@ -298,7 +299,8 @@ h3 {
 #add-classification-form fieldset,
 #add-inventory-form fieldset,
 #edit-inventory-form fieldset,
-#delete-inventory-form fieldset {
+#delete-inventory-form fieldset,
+#editAccountType-form fieldset {
   margin: 2rem 0;
   border: 0.25rem solid #c66717;
   border-radius: 2rem;
@@ -313,7 +315,8 @@ h3 {
 #add-classification-form label,
 #add-inventory-form label,
 #edit-inventory-form label,
-#delete-inventory-form label {
+#delete-inventory-form label,
+#editAccountType-form label {
   display: block;
   text-align: left;
   padding-top: 1rem;
@@ -330,7 +333,8 @@ h3 {
 #add-classification-form input,
 #add-inventory-form input,
 #edit-inventory-form input,
-#delete-inventory-form input {
+#delete-inventory-form input,
+#editAccountType-form input {
   display: block;
   padding: 0.75rem;
   width: 100%;
@@ -345,7 +349,8 @@ h3 {
 #add-classification-form .login-btn,
 #add-inventory-form .login-btn,
 #edit-inventory-form .login-btn,
-#delete-inventory-form .login-btn {
+#delete-inventory-form .login-btn,
+#editAccountType-form .login-btn {
   width: 30%;
   text-align: center;
   margin: 0 auto;
@@ -361,7 +366,8 @@ h3 {
 #add-classification-form .login-btn:hover,
 #add-inventory-form .login-btn:hover,
 #edit-inventory-form .login-btn:hover,
-#delete-inventory-form .login-btn:hover {
+#delete-inventory-form .login-btn:hover,
+#editAccountType-form .login-btn:hover {
   background-color: #0d6e92;
   color: #fff;
 }
@@ -420,7 +426,8 @@ h3 {
 }
 
 #add-inventory-form select,
-#edit-inventory-form select {
+#edit-inventory-form select,
+#editAccountType-form select {
   border-radius: 10px;
   height: 40px;
   width: 100%;
@@ -437,14 +444,16 @@ h3 {
 #add-inventory-form select:required,
 #add-inventory-form input:required,
 #edit-inventory-form select:required,
-#edit-inventory-form input:required {
+#edit-inventory-form input:required,
+#editAccountType-form select:required {
   border: red solid;
 }
 
 #add-inventory-form select:required:valid,
 #add-inventory-form input:required:valid,
 #edit-inventory-form select:required:valid,
-#edit-inventory-form input:required:valid {
+#edit-inventory-form input:required:valid ,
+#editAccountType-form select:required:valid{
   border: blue 4px solid;
 }
 
@@ -467,13 +476,12 @@ h3 {
 }
 
 /* MESSAGES */
-#messages {
+#messages,
+.notice {
   color: rgb(162, 7, 7);
   font-family: "Montserrat", sans-serif;
   width: 90%;
-}
-.notice {
-  color: rgb(151, 0, 0);
+  list-style: none;
 }
 
 /* MANAGEMENT VIEW*/
@@ -617,18 +625,7 @@ tbody tr:hover {
     padding: 0.625rem;
   }
 
-  /* #login-form input {
-    padding: 1rem;
-  }
-
-  #login-form #check {
-    font-size: 1.2rem;
-  }
-
-  #check input {
-    width: 4%;
-  } */
-
+  
   #welcome,
   #management-form,
   #login-form,
@@ -638,7 +635,8 @@ tbody tr:hover {
   #delete-inventory-form,
   #edit-inventory-form,
   #updateAccount-form,
-  #updatePassword-form {
+  #updatePassword-form,
+  #editAccountType-form {
     max-width: 45rem;
     margin: 5rem auto;
   }
