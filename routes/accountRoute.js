@@ -43,7 +43,7 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
-//Process the login attempt
+// Route to Process the login attempt
 router.post(
   "/login",
   regValidate.loginRules(),
@@ -51,7 +51,7 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 );
 
-// Process the account update 
+// Route to Process the account update 
 router.post(
   "/",
   regValidate.updateRules(),
@@ -59,7 +59,7 @@ router.post(
   utilities.handleErrors(accountController.updateAccount)
 );
 
-// Process the password update
+// Route to Process the password update
 router.post(
   "/update",
   regValidate.upPassRules(),
@@ -67,10 +67,12 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 );
 
+// Route to Check if loggen in account is an Admin
 router.get('/editAccountType', 
   utilities.isAdminAccount,
   utilities.handleErrors(accountController.buildAccountType))
 
+  // Route to process account type change
 router.post(
   "/editAccountType",
   regValidate.accountTypeUpdateRules(),
