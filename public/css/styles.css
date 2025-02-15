@@ -278,7 +278,8 @@ h3 {
   margin: 1.5rem 0;
 }
 
-/* Login Form, Registration Form, Account Update Form, Password Update Form */
+/* ALL FORMS */
+
 #login-form,
 #registration-form,
 #updateAccount-form,
@@ -287,7 +288,8 @@ h3 {
 #add-inventory-form,
 #edit-inventory-form,
 #delete-inventory-form,
-#editAccountType-form {
+#editAccountType-form,
+#deleteAccount-form {
   margin: 30px;
   color: #000;
 }
@@ -300,7 +302,8 @@ h3 {
 #add-inventory-form fieldset,
 #edit-inventory-form fieldset,
 #delete-inventory-form fieldset,
-#editAccountType-form fieldset {
+#editAccountType-form fieldset,
+#deleteAccount-form fieldset {
   margin: 2rem 0;
   border: 0.25rem solid #c66717;
   border-radius: 2rem;
@@ -316,7 +319,8 @@ h3 {
 #add-inventory-form label,
 #edit-inventory-form label,
 #delete-inventory-form label,
-#editAccountType-form label {
+#editAccountType-form label,
+#deleteAccount-form label {
   display: block;
   text-align: left;
   padding-top: 1rem;
@@ -334,7 +338,8 @@ h3 {
 #add-inventory-form input,
 #edit-inventory-form input,
 #delete-inventory-form input,
-#editAccountType-form input {
+#editAccountType-form input,
+#deleteAccount-form input {
   display: block;
   padding: 0.75rem;
   width: 100%;
@@ -350,8 +355,9 @@ h3 {
 #add-inventory-form .login-btn,
 #edit-inventory-form .login-btn,
 #delete-inventory-form .login-btn,
-#editAccountType-form .login-btn {
-  width: 30%;
+#editAccountType-form .login-btn,
+#deleteAccount-form .login-btn {
+  width: 50%;
   text-align: center;
   margin: 0 auto;
   margin-top: 1.3rem;
@@ -367,7 +373,8 @@ h3 {
 #add-inventory-form .login-btn:hover,
 #edit-inventory-form .login-btn:hover,
 #delete-inventory-form .login-btn:hover,
-#editAccountType-form .login-btn:hover {
+#editAccountType-form .login-btn:hover,
+#deleteAccount-form .login-btn:hover {
   background-color: #0d6e92;
   color: #fff;
 }
@@ -421,17 +428,30 @@ h3 {
   border: blue 4px solid;
 }
 
-#add-class {
-  margin: 2rem;
+#add-class, #add-class2 {
+  margin: auto ;
+  max-width: 25rem;
+  text-align: center;
 }
 
-#add-inventory-form select,
-#edit-inventory-form select,
-#editAccountType-form select {
+select {
   border-radius: 10px;
   height: 40px;
   width: 100%;
 }
+
+/* select {
+  background-color: #f0f0f0; 
+  border: 1px solid #ccc; 
+  padding: 5px;
+}
+select:hover {
+  background-color: #e0e0e0;
+}
+select:focus {
+  background-color: #d0d0d0;
+  outline: none; 
+} */
 
 #add-inventory-form textarea,
 #edit-inventory-form textarea {
@@ -445,15 +465,17 @@ h3 {
 #add-inventory-form input:required,
 #edit-inventory-form select:required,
 #edit-inventory-form input:required,
-#editAccountType-form select:required {
+#editAccountType-form select:required,
+#deleteAccount-form select:required {
   border: red solid;
 }
 
 #add-inventory-form select:required:valid,
 #add-inventory-form input:required:valid,
 #edit-inventory-form select:required:valid,
-#edit-inventory-form input:required:valid ,
-#editAccountType-form select:required:valid{
+#edit-inventory-form input:required:valid,
+#editAccountType-form select:required:valid,
+#deleteAccount-form select:required:valid {
   border: blue 4px solid;
 }
 
@@ -625,7 +647,6 @@ tbody tr:hover {
     padding: 0.625rem;
   }
 
-  
   #welcome,
   #management-form,
   #login-form,
@@ -636,7 +657,8 @@ tbody tr:hover {
   #edit-inventory-form,
   #updateAccount-form,
   #updatePassword-form,
-  #editAccountType-form {
+  #editAccountType-form,
+  #deleteAccount-form {
     max-width: 45rem;
     margin: 5rem auto;
   }
