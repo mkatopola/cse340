@@ -211,7 +211,8 @@ Util.checkPermission = (req, res, next) => {
  ****************************************/
 Util.isAdminAccount = (req, res, next) => {
   const accountType = res.locals.accountData.account_type;
-  if (accountType != "Admin") {
+  if (accountType !== "Admin") {
+    req.flash("notice", "You must be an admin to perform this action.");
     return res.redirect("/account/login");
   }
   next();
