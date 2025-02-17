@@ -102,16 +102,18 @@ async function updatePassword(account_password, account_id) {
     console.error("updatePassword error " + error);
   }
 }
+// FINAL PROJECT 
 
 
 async function getAccountsExcept(account_id) {
   try {
     const result = await pool.query(
-      'SELECT account_id, account_firstname, account_lastname FROM account WHERE account_id <> $1', [account_id])
-    return result.rows
-
+      "SELECT account_id, account_firstname, account_lastname FROM public.account WHERE account_id <> $1",
+      [account_id]
+    );
+    return result.rows;
   } catch (error) {
-    return error.message
+    return error.message;
   }
 }
 
@@ -123,7 +125,7 @@ async function getAccountType() {
       `SELECT unnest(enum_range(NULL::public.account_type)) as type_name`
     );
     // Map the results to the structure expected by your view (both keys set to the enum value)
-    return result.rows.map(row => ({
+    return result.rows.map((row) => ({
       type_id: row.type_name,
       type_name: row.type_name
     }));
@@ -131,7 +133,6 @@ async function getAccountType() {
     return error.message;
   }
 }
-
 
 // Function to update an account's type
 async function updateAccountType(account_id, type_id) {
@@ -150,5 +151,30 @@ async function updateAccountType(account_id, type_id) {
   }
 }
 
+// Function to delete an account
+async function deleteAccount(account_id) {
+  try {
+    const result = await pool.query(
+      `DELETE FROM public.account 
+         WHERE account_id = $1 
+         RETURNING *`,
+      [account_id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error deleting account:", error);
+  }
+}
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, getAccountsExcept, getAccountType, updateAccountType };
+module.exports = {
+  registerAccount,
+  checkExistingEmail,
+  getAccountByEmail,
+  getAccountById,
+  updateAccount,
+  updatePassword,
+  getAccountsExcept,
+  getAccountType,
+  updateAccountType,
+  deleteAccount
+};

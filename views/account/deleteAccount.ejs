@@ -1,0 +1,27 @@
+<h1>
+    <%= title %>
+</h1>
+
+<%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <form id="deleteAccount-form" action="/account/deleteAccount" method="post">
+                <fieldset>
+                    <div id="add-class">
+
+                        <label for="deleteAccount">Select the account to delete</label>
+                        <%- accountList %>
+
+                            <input type="submit" value="Delete Account" class="login-btn">
+                    </div>
+                </fieldset>
+            </form>

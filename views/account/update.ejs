@@ -16,25 +16,27 @@
 
       <form id="updateAccount-form" action="/account" method="post">
         <fieldset>
-          <label>
-            First name:
-            <input type="text" name="account_firstname" id="accountFirstname" required
-              value="<%= locals.accountData.account_firstname %>">
-          </label>
-          <label>
-            Last name:
-            <input type="text" name="account_lastname" id="accountLastname" required
-              value="<%= locals.accountData.account_lastname %>">
-          </label>
-          <label>
-            Email address:
-            <input type="email" name="account_email" id="accountEmail" required
-              value="<%= locals.accountData.account_email %>">
-          </label>
-          <input type="submit" value="UPDATE" class="login-btn" disabled>
-          <input type="hidden" name="account_id" <% if(locals.accountData.account_id) { %> value="<%=
-            locals.accountData.account_id %>"
-            <% } %>>
+          <div id="add-class">
+            <label>
+              First name:
+              <input type="text" name="account_firstname" id="accountFirstname" required
+                value="<%= locals.accountData.account_firstname %>">
+            </label>
+            <label>
+              Last name:
+              <input type="text" name="account_lastname" id="accountLastname" required
+                value="<%= locals.accountData.account_lastname %>">
+            </label>
+            <label>
+              Email address:
+              <input type="email" name="account_email" id="accountEmail" required
+                value="<%= locals.accountData.account_email %>">
+            </label>
+            <input type="submit" value="UPDATE" class="login-btn" disabled>
+            <input type="hidden" name="account_id" <% if(locals.accountData.account_id) { %> value="<%=
+              locals.accountData.account_id %>"
+              <% } %>>
+          </div>
         </fieldset>
       </form>
 
@@ -43,6 +45,7 @@
       <form id="updatePassword-form" action="/account/update" method="post">
 
         <fieldset>
+          <div id="add-class2">
           <p class="required-info">*Note your original password will be changed.</p>
 
           <label>

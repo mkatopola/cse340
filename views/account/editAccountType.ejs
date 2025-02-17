@@ -17,14 +17,16 @@
 
             <form id="editAccountType-form" action="/account/editAccountType" method="post">
                 <fieldset>
-                    <p class="required-info">All fields are required.</p>
-                    <label for="accountList">Select an account</label>
-                    <%- accountList %>
+                    <div id="add-class">
+                        <p class="required-info">All fields are required.</p>
+                        <label for="accountList">Select an account</label>
+                        <%- accountList %>
 
-                        <label for="accountTypeList">Select the type</label>
-                        <%- accountTypeList %>
+                            <label for="accountTypeList">Select the type</label>
+                            <%- accountTypeList %>
 
-                            <input type="submit" value="Change type" class="login-btn"
-                                aria-label="Submit new account type">
+                                <input type="submit" value="Change type" class="login-btn"
+                                    aria-label="Submit new account type">
+                    </div>
                 </fieldset>
             </form>

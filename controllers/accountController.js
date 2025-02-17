@@ -280,6 +280,47 @@ async function updateAccountType(req, res, next) {
   }
 }
 
+// Deliver the delete account view for Admin
+async function deleteAccountView(req, res, next) {
+  let nav = await utilities.getNav();
+
+  try {
+    let accountList = await utilities.buildAccountList(
+      res.locals.accountData.account_id
+    );
+    res.render("account/deleteAccount", {
+      title: "Delete Account",
+      nav,
+      accountList,
+      errors: null
+    });
+  } catch (error) {
+    req.flash("error", "Error loading accounts. Please try again.");
+    res.redirect("/account/");
+  }
+}
+
+// Process the deletion request
+async function handleDeleteAccount(req, res) {
+  try {
+    const adminId = Number(req.session.account_id);
+    const accountToDelete = Number(req.body.account_id);
+
+    if (accountToDelete === adminId) {
+      req.flash("error", "You cannot delete your own account.");
+      return res.redirect("/account/deleteAccount");
+    }
+
+    await accountModel.deleteAccount(accountToDelete);
+    req.flash("notice", "Account deleted successfully.");
+    res.redirect("/account/deleteAccount");
+  } catch (error) {
+    console.error("Error in handleDeleteAccount:", error);
+    req.flash("notice", "Error deleting account. Please try again.");
+    res.redirect("/account/deleteAccount");
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -291,5 +332,7 @@ module.exports = {
   updateAccount,
   updatePassword,
   buildAccountType,
-  updateAccountType
+  updateAccountType,
+  deleteAccountView,
+  handleDeleteAccount
 };

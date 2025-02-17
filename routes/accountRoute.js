@@ -4,6 +4,7 @@ const express = require("express");
 const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
+const validate = require("../utilities/accountValidation");
 
 // Route to build a login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
@@ -51,7 +52,7 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 );
 
-// Route to Process the account update 
+// Route to Process the account update
 router.post(
   "/",
   regValidate.updateRules(),
@@ -67,16 +68,34 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 );
 
-// Route to Check if loggen in account is an Admin
-router.get('/editAccountType', 
+// Route to Check if logged in account is an Admin
+router.get(
+  "/editAccountType",
   utilities.isAdminAccount,
-  utilities.handleErrors(accountController.buildAccountType))
+  utilities.handleErrors(accountController.buildAccountType)
+);
 
-  // Route to process account type change
+// Route to process account type change
 router.post(
   "/editAccountType",
   regValidate.accountTypeUpdateRules(),
   regValidate.checkAccountTypeUpdateData,
   utilities.handleErrors(accountController.updateAccountType)
-)
+);
+
+// Route to the delete account view
+router.get(
+  "/deleteAccount",
+  utilities.isAdminAccount,
+  utilities.handleErrors(accountController.deleteAccountView)
+);
+
+// Route to process account deletion
+router.post(
+  "/deleteAccount",
+  utilities.isAdminAccount,
+  validate.deleteAccountRules(),
+  validate.checkDeleteAccountData,
+  utilities.handleErrors(accountController.handleDeleteAccount)
+);
 module.exports = router;

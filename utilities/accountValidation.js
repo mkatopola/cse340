@@ -161,9 +161,9 @@ validate.updateRules = () => {
   ];
 };
 
-/* ******************************
- * Check data and return errors or continue to registration
- * ***************************** */
+/* ***********************************************************
+ * Check data and return errors or continue to registration  *
+ * ********************************8************************ */
 validate.checkUpdateData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email, account_id } =
     req.body;
@@ -185,9 +185,9 @@ validate.checkUpdateData = async (req, res, next) => {
   next();
 };
 
-/*******************
- * Update password rules
- *******************/
+/*************************
+ * Update password rules *
+ *************************/
 validate.upPassRules = () => {
   return [
     //account id is required and must be an integer
@@ -207,9 +207,9 @@ validate.upPassRules = () => {
   ];
 };
 
-/* ******************************
- * Check data and return errors or continue to update password
- * ***************************** */
+/* *************************************************************
+ * Check data and return errors or continue to update password *
+ * *********************************************************** */
 validate.checkPassData = async (req, res, next) => {
   const { account_id, account_password } = req.body;
   let errors = [];
@@ -227,7 +227,6 @@ validate.checkPassData = async (req, res, next) => {
   }
   next();
 };
- 
 
 // FINAL PROJECT
 
@@ -243,33 +242,74 @@ validate.accountTypeUpdateRules = () => {
       .trim()
       .escape()
       .isLength({ min: 1 })
-      .withMessage("Please select a 'type'"),
-]}
+      .withMessage("Please select a 'type'")
+  ];
+};
 
 validate.checkAccountTypeUpdateData = async (req, res, next) => {
-  const { account_id, type_id, account_firstname, account_lastname} = req.body
-  let errors = []
-  errors = validationResult(req)
+  const { account_id, type_id, account_firstname, account_lastname } = req.body;
+  let errors = [];
+  errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-      let nav = await utilities.getNav()
-      let accountTypeList = await utilities.buildAccountTypeList(type_id)
-      let accountList = await utilities.buildAccountList(res.locals.accountData.account_id, account_id)
+    let nav = await utilities.getNav();
+    let accountTypeList = await utilities.buildAccountTypeList(type_id);
+    let accountList = await utilities.buildAccountList(
+      res.locals.accountData.account_id,
+      account_id
+    );
 
-      res.render("account/editAccounttype", {
-          errors,
-          title: "Edit Account Type",
-          nav,
-          accountTypeList,
-          accountList,
-          account_id,
-          type_id,
-          account_firstname,
-          account_lastname,
-      })
-    return
+    res.render("account/editAccounttype", {
+      errors,
+      title: "Edit Account Type",
+      nav,
+      accountTypeList,
+      accountList,
+      account_id,
+      type_id,
+      account_firstname,
+      account_lastname
+    });
+    return;
   }
-  next()
-}
+  next();
+};
+
+/*  **********************************
+ *  Delete Account Validation Rules  *
+ * ********************************* */
+validate.deleteAccountRules = () => {
+  return [
+    // Account ID is required and must be a number
+    body("account_id")
+      .trim()
+      .notEmpty()
+      .isInt({ min: 1 })
+      .withMessage("Invalid account ID.")
+  ];
+};
+
+/* ************************************************************
+ * Check data and return errors or continue to delete account *
+ * ********************************************************** */
+validate.checkDeleteAccountData = async (req, res, next) => {
+  const { account_id } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let accountList = await utilities.buildAccountList(
+      res.locals.accountData.account_id,
+      account_id
+    );
+    return res.render("account/deleteAccount", {
+      errors,
+      title: "Delete Account",
+      nav,
+      accountList,
+      account_id
+    });
+  }
+  next();
+};
 
 module.exports = validate;

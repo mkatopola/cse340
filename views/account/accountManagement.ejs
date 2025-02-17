@@ -29,8 +29,12 @@
 
                     <% } %>
                         <% if(locals.accountData.account_type==='Admin' ) { %>
-                            <h3>Account Type Management</h3>
-                            <button><a href="/account/editAccountType">Management Accounts</a></button>
+
+                            <h3>Manage Other Accounts</h3>
+                            <button><a href="/account/editAccountType">Change Account Types</a></button>
+                            <br>
+                            <button><a href="/account/deleteAccount">Delete User Accounts</a></button>
+
 
                             <% } %>
             </div>
